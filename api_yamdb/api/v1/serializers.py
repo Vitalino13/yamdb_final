@@ -1,12 +1,9 @@
 import re
 
+from django.shortcuts import get_object_or_404
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
-from django.shortcuts import get_object_or_404
-
-from reviews.models import (Review, Comment,
-                            Category, Genre, Title,
-                            User)
+from reviews.models import Category, Comment, Genre, Review, Title, User
 
 
 class UserSignUpSerializer(serializers.Serializer):
