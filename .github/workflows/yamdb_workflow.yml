@@ -1,4 +1,3 @@
-# .github/workflows/**main.yml**
 name: Django-app workflow
 
 on: [push]
@@ -22,7 +21,7 @@ jobs:
     - name: Test with flake8 and django tests
       run: |
         python -m flake8
-        cd infra_project/
+        cd api_yamdb/
         python manage.py test
 
   build_and_push_to_docker_hub:
@@ -40,35 +39,34 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push to Docker Hub
-        # Пуш образа в Docker Hub
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: vitalino13/infra_actions:latest
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build_and_push_to_docker_hub
-    steps:
-      - name: executing remote ssh commands to deploy
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }} # Если ваш ssh-ключ защищён фразой-паролем
-          script: |
-            # Выполняет pull образа с DockerHub
-            sudo docker pull vitalino13/infra_actions
-            #остановка всех контейнеров
-            sudo docker stop $(sudo docker ps -a -q)
-            sudo docker run --rm -d -p 5000:5000 vitalino13/infra_actions
-  send_message:
-    runs-on: ubuntu-latest
-    needs: deploy
-    steps:
-      - name: send message
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: ${{ github.workflow }} успешно выполнен!
+          tags: vitalino13/api_yamdb:latest
+#  deploy:
+#    runs-on: ubuntu-latest
+#    needs: build_and_push_to_docker_hub
+#    steps:
+#      - name: executing remote ssh commands to deploy
+#        uses: appleboy/ssh-action@master
+#        with:
+#          host: ${{ secrets.HOST }}
+#          username: ${{ secrets.USER }}
+#          key: ${{ secrets.SSH_KEY }}
+#          passphrase: ${{ secrets.PASSPHRASE }} # Если ваш ssh-ключ защищён фразой-паролем
+#          script: |
+#            # Выполняет pull образа с DockerHub
+#            sudo docker pull vitalino13/infra_actions
+#            #остановка всех контейнеров
+#            sudo docker stop $(sudo docker ps -a -q)
+#            sudo docker run --rm -d -p 5000:5000 vitalino13/infra_actions
+#  send_message:
+#    runs-on: ubuntu-latest
+#    needs: deploy
+#    steps:
+#      - name: send message
+#        uses: appleboy/telegram-action@master
+#        with:
+#          to: ${{ secrets.TELEGRAM_TO }}
+#          token: ${{ secrets.TELEGRAM_TOKEN }}
+#          message: ${{ github.workflow }} успешно выполнен!

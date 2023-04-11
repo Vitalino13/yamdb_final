@@ -13,9 +13,9 @@ services:
       - /var/lib/postgresql/data/
     # адрес файла, где хранятся переменные окружения
     env_file:
-      - .env
+      - ../api_yamdb/.env
   web:
-    build: ..
+    build: ../api_yamdb/
     restart: always
     volumes:
       # Контейнер web будет работать с данными, хранящиеся в томе static_value, 
@@ -28,7 +28,7 @@ services:
     depends_on:
       - db
     env_file:
-      - .env
+      - ../api_yamdb/.env
 
   # Новый контейнер
   nginx:
