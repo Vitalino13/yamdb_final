@@ -8,7 +8,7 @@ services:
     env_file:
       - ../api_yamdb/.env
   web:
-    build: ../api_yamdb
+    image: vitalino13/yamdb_final:latest
     restart: always
     volumes:
       - static_value:/app/api_yamdb/static/

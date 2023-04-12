@@ -42,8 +42,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: vitalino13/api_yamdb:latest
-          dockerfile: ./api_yamdb/Dockerfile
+          tags: vitalino13/yamdb_final:latest
 #  deploy:
 #    runs-on: ubuntu-latest
 #    needs: build_and_push_to_docker_hub
