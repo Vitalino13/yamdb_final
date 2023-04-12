@@ -31,8 +31,8 @@ jobs:
     steps:
       - name: Check current folder
         run: |
-          pwd
           ls
+          pwd
       - name: check out the repo
         uses: actions/checkout@v3
       - name: Set up Docker Buildx
