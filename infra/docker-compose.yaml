@@ -15,7 +15,7 @@ services:
     env_file:
       - ../api_yamdb/.env
   web:
-    build: ../api_yamdb/
+    image: vitalino13/api_yamdb
     restart: always
     volumes:
       # Контейнер web будет работать с данными, хранящиеся в томе static_value, 
