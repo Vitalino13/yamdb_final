@@ -16,7 +16,8 @@ services:
       - ../api_yamdb/.env
   web:
     build:
-      context: ../api_yamdb
+      context: ../api_yamdb/
+      dockerfile: Dockerfile
     restart: always
     volumes:
       # Контейнер web будет работать с данными, хранящиеся в томе static_value, 
