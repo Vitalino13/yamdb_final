@@ -41,6 +41,9 @@ jobs:
       - name: to delete
         run: |
           pwd
+          cd api_yamdb
+          pwd
+          ls
       - name: Push to Docker Hub
         uses: docker/build-push-action@v2
         with:
