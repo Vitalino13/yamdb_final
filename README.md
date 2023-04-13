@@ -1,5 +1,6 @@
 YaMDb
-https://github.com/vitalino13/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg
+![Yamdb Workflow Status](https://github.com/vitalino13/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?branch=master&event=push)
+
 
 YaMDb - база данных, которая собирает отзывы о различных произведениях. Произведения делятся на категории: «Книги», «Фильмы», «Музыка». При необходимости, список категорий может быть расширен администратором. Пользователи могут оставлять рецензии на произведения и ставить оценки.
 Проект реализован на Django и DjangoRestFramework. Доступ к данным реализован через API-интерфейс. Документация к API написана с использованием Redoc.
