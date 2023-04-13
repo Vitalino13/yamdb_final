@@ -51,7 +51,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          dockerfile: ./api_yamdb/Dockerfile
+          context: ./api_yamdb/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/yamdb_final:latest
           secrets: |
             GIT_AUTH_TOKEN=${{ secrets.MYTOKEN }}
